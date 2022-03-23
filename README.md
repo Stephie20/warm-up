@@ -1,5 +1,7 @@
 ## Project #0: Warming up C programming
 
+Please do not fork this repository!
+
 ### *** Due on 11:59, March 30 (Wednesday) ***
 
 
