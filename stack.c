@@ -24,7 +24,7 @@ extern struct list_head stack;
 
 /* Entry for the stack */
 struct entry {
-	struct list_head list;
+	struct list_head list; //the payload
 	char *string;
 };
 /*          ****** DO NOT MODIFY ANYTHING ABOVE THIS LINE ******      */
@@ -35,7 +35,7 @@ struct entry {
  * include any header files if you want to ...                        */
 
 #include <stdlib.h>                    /* like this */
-
+#include <string.h>
 /**
  * push_stack()
  *
@@ -46,6 +46,11 @@ struct entry {
 void push_stack(char *string)
 {
 	/* TODO: Implement this function */
+	struct entry *new = (struct entry*)malloc(sizeof(struct entry));
+	INIT_LIST_HEAD(&new->list);
+	new->string = (char*)malloc(strlen(string)+1);
+	strcpy(new->string,string);
+	list_add_tail(&(new->list)&stack);
 
 }
 
@@ -65,7 +70,13 @@ void push_stack(char *string)
 int pop_stack(char *buffer)
 {
 	/* TODO: Implement this function */
-	return -1; /* Must fix to return a proper value when @stack is not empty */
+	if( !list_entry(&stack, struct entry,buffer)){
+		entry *node;
+		node = list_entry(stack.perv,entry.next);
+		list_del(&node->list);
+		reutrn 0;
+	}else{
+		return -1;}
 }
 
 
@@ -80,7 +91,10 @@ int pop_stack(char *buffer)
 void dump_stack(void)
 {
 	/* TODO: Implement this function */
-
-	fprintf(stderr, "%s\n", "0xdeadbeef"); /* Example. 
+	struct list_head *prt;
+	struct entry *node;
+	list_for_each(prt, &stack){
+		node = list_entry(prt,struct entry,list);
+		fprintf(stderr, "%s\n", "0xdeadbeef"); /* Example. 
 											Print out values in this form */
 }
